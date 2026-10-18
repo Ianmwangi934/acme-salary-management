@@ -1,7 +1,18 @@
-from django.urls import path
+from django.urls import include,path
+from rest_framework.routers import DefaultRouter
+
+from .views import CompensationViewSet
+
+router = DefaultRouter()
+router.register(
+    "",
+    CompensationViewSet,
+    basename="compensation",
+)
 
 app_name = "compensation"
 
 urlpatterns = [
-    # Salary management endpoints will be registered here.
+    path("", include(router.urls)),
 ]
+

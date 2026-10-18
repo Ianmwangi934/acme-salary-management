@@ -1,7 +1,21 @@
-from django.urls import path
+from django.urls import include,path
+from rest_framework.routers import DefaultRouter
+from .views import DepartmentViewSet, EmployeeViewSet
+
+router = DefaultRouter()
+router.register(
+    "departments",
+    DepartmentViewSet,
+    basename="department",
+)
+router.register(
+    "",
+    EmployeeViewSet,
+    basename="employee",
+)
 
 app_name = "employees"
 
 urlpatterns = [
-    # Employee endpoints will be registered here.
+    path("", include(router.urls)),
 ]
