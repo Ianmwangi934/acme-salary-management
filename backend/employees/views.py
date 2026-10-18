@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from .permissions import IsHRStaffOrReadOnly
 from .models import Department, Employee
 from .serializers import (
     DepartmentSerializer,
     EmployeeSerializer,
+    EmployeeOnboardingSerializer,
 )
 
 # Create your views here.
@@ -17,7 +19,7 @@ class DepartmentViewSet(viewsets.ReadOnlyModelViewSet):
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsHRStaffOrReadOnly]
 
     http_method_names = [
         "get",
@@ -54,4 +56,9 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         return Employee.objects.select_related(
             "department"
         ).all()
+
+    def get_serializer_class(self):
+        if self.action == "create":
+            return EmployeeOnboardingSerializer
+        return EmployeeSerializer
 

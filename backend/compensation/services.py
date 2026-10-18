@@ -81,3 +81,36 @@ def update_employee_salary(
     )
 
     return compensation, history
+
+
+@transaction.atomic
+def assign_initial_compensation(
+    *,
+    employee,
+    annual_base_salary,
+    currency,
+    effective_date,
+):
+    """
+    Assign initial compensation to an employee.
+    """
+
+    validate_salary_amount(annual_base_salary)
+    validate_currency_code(currency)
+
+    if Compensation.objects.filter(employee=employee).exists():
+        raise ValidationError(
+            "This employee already has a compensation record."
+        )
+
+    compensation = Compensation(
+        employee=employee,
+        annual_base_salary=Decimal(str(annual_base_salary)),
+        currency=currency,
+        effective_date=effective_date,
+    )
+
+    compensation.full_clean()
+    compensation.save()
+
+    return compensation
