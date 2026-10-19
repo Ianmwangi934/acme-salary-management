@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
-from rest_framework.permissions import IsAuthenticated
+from employees.permissions import IsHRStaff
 from rest_framework.response import Response
 
 from .models import Compensation, SalaryHistory
@@ -17,9 +17,10 @@ from .services import update_employee_salary
 # Create your views here.
 class CompensationViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = CompensationSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsHRStaff]
 
     filterset_fields = [
+        "employee",
         "currency",
         "employee__country",
         "employee__department",

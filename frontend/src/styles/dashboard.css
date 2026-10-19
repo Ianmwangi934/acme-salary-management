@@ -1,0 +1,293 @@
+
+.dashboard {
+  width: 100%;
+}
+
+.dashboard-header {
+  margin-bottom: 28px;
+}
+
+.dashboard-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.dashboard-header p {
+  color: #64748b;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.stat-card,
+.chart-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.stat-icon {
+  color: #2563eb;
+  margin-bottom: 12px;
+}
+
+.stat-card p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.stat-card h2 {
+  font-size: 30px;
+  margin-top: 10px;
+  color: #0f172a;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.chart-card h2 {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 320px;
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+/* ========================================
+   ACME APPLICATION LAYOUT
+======================================== */
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fb;
+  color: #17243d;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  min-height: 100vh;
+  background: #101d35;
+  color: #fff;
+  padding: 30px 18px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin: 0 0 50px;
+  padding-left: 16px;
+  color: #fff;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  color: #aebcd5;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sidebar nav a:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+
+.sidebar nav a.active {
+  background: #4f6ef7;
+  color: #fff;
+  box-shadow: 0 5px 18px rgba(79, 110, 247, 0.2);
+}
+
+.sidebar nav a svg {
+  flex-shrink: 0;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 35px 45px;
+}
+
+/* TOP BAR */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  min-height: 54px;
+  margin-bottom: 30px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e5eaf2;
+  color: #475569;
+  font-size: 14px;
+}
+
+.topbar button {
+  padding: 10px 18px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.topbar button:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+/* DASHBOARD IMPROVEMENTS */
+
+.dashboard-header h1 {
+  font-size: 30px;
+  font-weight: 750;
+  letter-spacing: -0.8px;
+}
+
+.dashboard-header p {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.stat-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #eef2ff;
+  color: #4f6ef7;
+}
+
+.chart-card {
+  min-width: 0;
+}
+
+.chart-card h2 {
+  color: #17243d;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* RESPONSIVE LAYOUT */
+
+@media (max-width: 1000px) {
+  .sidebar {
+    width: 220px;
+    min-width: 220px;
+  }
+
+  .main-content {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+    height: auto;
+    position: static;
+    padding: 18px;
+  }
+
+  .sidebar h2 {
+    margin-bottom: 18px;
+    padding-left: 5px;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+  }
+
+  .sidebar nav a {
+    white-space: nowrap;
+    padding: 12px;
+  }
+
+  .main-content {
+    padding: 20px 16px 35px;
+  }
+
+  .topbar {
+    margin-bottom: 24px;
+  }
+}
+

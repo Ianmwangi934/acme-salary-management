@@ -91,3 +91,22 @@ class EmployeeOnboardingSerializer(serializers.Serializer):
             employee_data=validated_data,
             salary_data=salary_data,
         )
+
+
+
+    def validate_employee_id(self, value):
+        if Employee.objects.filter(employee_id=value).exists():
+            raise serializers.ValidationError(
+                "This employee ID is already in use. "
+                "Please generate a new ID or enter another one."
+            )
+        return value
+
+
+    def validate_email(self, value):
+        if Employee.objects.filter(email__iexact=value).exists():
+            raise serializers.ValidationError(
+                "An employee with this email address already exists."
+            )
+        return value
+

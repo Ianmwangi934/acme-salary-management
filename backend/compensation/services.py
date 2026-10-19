@@ -8,6 +8,7 @@ from django.db import transaction
 from employees.models import Employee
 from .models import Compensation, SalaryHistory
 from .validators import validate_currency_code, validate_salary_amount
+from django.core.exceptions import PermissionDenied
 
 
 @transaction.atomic
@@ -114,3 +115,16 @@ def assign_initial_compensation(
     compensation.save()
 
     return compensation
+
+def require_hr_staff(user):
+    if (
+        user is None
+        or not user.is_authenticated
+        or not (
+            user.is_staff
+            or user.groups.filter(name="HR").exists()
+        )
+    ):
+        raise PermissionDenied(
+            "Only HR staff may modify compensation."
+        )
