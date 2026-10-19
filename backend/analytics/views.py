@@ -11,6 +11,8 @@ from .services import (
     get_country_analytics,
     get_compensation_summary,
     get_salary_distribution,
+    get_department_compensation_analytics,
+    get_country_compensation_analytics,
 )
 
 
@@ -59,4 +61,23 @@ class SalaryDistributionView(APIView):
         return Response(
             get_salary_distribution(currency)
         )
+
+
+class DepartmentCompensationAnalyticsView(APIView):
+    permission_classes = [IsHRStaff]
+
+    def get(self, request):
+        return Response(
+            get_department_compensation_analytics()
+        )
+
+
+class CountryCompensationAnalyticsView(APIView):
+    permission_classes = [IsHRStaff]
+
+    def get(self, request):
+        return Response(
+            get_country_compensation_analytics()
+        )
+
 

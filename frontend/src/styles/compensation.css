@@ -514,3 +514,93 @@
     flex-direction: column;
   }
 }
+
+
+
+/* Company-wide compensation analytics */
+
+.compensation-analytics {
+  margin-bottom: 28px;
+}
+
+.compensation-analytics > .compensation-panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 0 0 20px;
+}
+
+.compensation-analytics-currency {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.compensation-analytics-currency select {
+  min-width: 110px;
+  padding: 9px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  font: inherit;
+}
+
+.compensation-analytics-figure {
+  font-size: clamp(16px, 2vw, 24px) !important;
+  overflow-wrap: anywhere;
+}
+
+.compensation-analytics-panel {
+  margin-bottom: 20px;
+}
+
+.compensation-analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.compensation-analytics-grid
+.compensation-panel-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.compensation-analytics-chart {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 16px 20px;
+  box-sizing: border-box;
+}
+
+.compensation-analytics-status {
+  padding: 24px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media (max-width: 1050px) {
+  .compensation-analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .compensation-analytics
+  > .compensation-panel-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .compensation-analytics-currency {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+

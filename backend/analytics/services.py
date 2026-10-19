@@ -107,3 +107,54 @@ def get_salary_distribution(currency):
             for key, value in salary_ranges.items()
         ],
     }
+
+
+def get_department_compensation_analytics():
+    """
+    Calculate salary statistics by department and currency.
+
+    Grouping by currency prevents averaging salaries
+    denominated in different currencies.
+    """
+    return list(
+        Compensation.objects.values(
+            "employee__department_id",
+            "employee__department__name",
+            "currency",
+        )
+        .annotate(
+            employee_count=Count("id"),
+            average_salary=Avg("annual_base_salary"),
+            minimum_salary=Min("annual_base_salary"),
+            maximum_salary=Max("annual_base_salary"),
+            total_salary=Sum("annual_base_salary"),
+        )
+        .order_by(
+            "employee__department__name",
+            "currency",
+        )
+    )
+
+
+def get_country_compensation_analytics():
+    """
+    Calculate salary statistics by country and currency.
+    """
+    return list(
+        Compensation.objects.values(
+            "employee__country",
+            "currency",
+        )
+        .annotate(
+            employee_count=Count("id"),
+            average_salary=Avg("annual_base_salary"),
+            minimum_salary=Min("annual_base_salary"),
+            maximum_salary=Max("annual_base_salary"),
+            total_salary=Sum("annual_base_salary"),
+        )
+        .order_by(
+            "employee__country",
+            "currency",
+        )
+    )
+

@@ -7,6 +7,8 @@ from .views import (
     CountryAnalyticsView,
     CompensationSummaryView,
     SalaryDistributionView,
+    DepartmentCompensationAnalyticsView,
+    CountryCompensationAnalyticsView,
 )
 
 app_name = "analytics"
@@ -36,5 +38,16 @@ urlpatterns = [
         "salary-distribution/",
         SalaryDistributionView.as_view(),
         name="salary-distribution",
+    ),
+
+    path(
+    "compensation/departments/",
+    DepartmentCompensationAnalyticsView.as_view(),
+    name="compensation-departments",
+    ),
+    path(
+        "compensation/countries/",
+        CountryCompensationAnalyticsView.as_view(),
+        name="compensation-countries",
     ),
 ]
