@@ -1366,4 +1366,3 @@ export default function Compensation() {
     </div>
   );
 }
-s
