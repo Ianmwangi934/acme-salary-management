@@ -487,10 +487,12 @@ Nginx serves these files in production.
 ## 10. Authentication and Authorization
 
 Authentication establishes the identity of a user, while authorization determines which operations the user is permitted to perform.
+Public user registration was intentionally excluded because ACME Salary Management was designed for a single organization as part of the Incubyte assessment. Restricting account creation to authorized administrators minimizes unnecessary security risks and protects sensitive employee and compensation data.
 
 ### HR Permissions
 
 The application includes two custom permission classes.
+Public user registration was intentionally excluded because ACME Salary Management was designed for a single organization as part of the Incubyte assessment. Restricting account creation to authorized administrators minimizes unnecessary security risks and protects sensitive employee and compensation data.
 
 **`IsHRStaffOrReadOnly`**
 
@@ -1038,14 +1040,11 @@ systemd provides service supervision, restart behavior, and automatic startup af
 Potential improvements include:
 
 - Expanded automated test coverage.
-- Continuous integration through GitHub Actions.
-- Automated deployment pipelines.
-- More comprehensive API documentation.
-- Additional audit logging for sensitive compensation changes.
 - Monitoring and alerting.
 - Database backup automation and recovery testing.
 - Further frontend performance optimization.
-- Improved accessibility and responsive behavior.
+- Enabling hr to mark an employee as active or inactive
+- Making the project multi-tenant saas architecture allowing multiple organization to independently manage their employees
 
 These are proposed improvements, not claims about features already implemented.
 
